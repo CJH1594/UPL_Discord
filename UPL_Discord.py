@@ -1,6 +1,6 @@
 import discord
 import random
-import asyncio
+import os
 from random import shuffle
 
 
@@ -303,7 +303,8 @@ class MyClient(discord.Client):
 
 
 client = MyClient()
-client.run('ODA2MzcwNDQyNDAyMzMyNjc0.YBoc_w.MdmBbiqZZlcpVeFc52LqOjYHjpU')
+acess_token = os.environ["BOT_TOKEN"]
+client.run('acess_token')
 
 
                     
