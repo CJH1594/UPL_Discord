@@ -18,24 +18,6 @@ class MyClient(discord.Client):
         if message.author.id == self.user.id:
             return
 
-        if message.content.startswith('?guess'):
-            await message.channel.send('Guess a number between 1 and 10.')
-
-            def is_correct(m):
-                return m.author == message.author and m.content.isdigit()
-
-            answer = random.randint(1, 10)
-
-            try:
-                guess = await self.wait_for('message', check=is_correct, timeout=5.0)
-            except asyncio.TimeoutError:
-                return await message.channel.send('Sorry, you took too long it was {}.'.format(answer))
-
-            if int(guess.content) == answer:
-                await message.channel.send('You are right!')
-            else:
-                await message.channel.send('Oops. It is actually {}.'.format(answer))
-
         if message.content.startswith('?UPL'):
              
             # A function that makes the match lsit with the members
@@ -134,12 +116,8 @@ class MyClient(discord.Client):
                     await message.channel.send('{} - {}' .format(MatchList[i][v][0],MatchList[i][v][1]))
                 await message.channel.send('이긴 팁을 입력해라. ')
 
-
-
-
-
                 #승점 기록 part
-
+                
                 # Input all win team
                 while True:
                     
@@ -155,20 +133,16 @@ class MyClient(discord.Client):
                         WinTeamNumbers = WinTeamNumbers.content
                     except:
                         await message.channel.send('잘좀 쓰자.')
-
-
+                        
                     try:
                         WinTeamNumbers = WinTeamNumbers.split()
                         WinTeamNumbers = list(map(int, WinTeamNumbers))
-                    
                     except:
                         if len(WinTeamNumbers) == 1:
                             WinTeamNumbers = [int(WinTeamNumbers)]
                         elif WinTeamNumbers == '':
                             WinTeamNumbers = []
-
-
-
+                            
                     for u in WinTeamNumbers:
                         WinTeam.append(Team[u-1])
                     await message.channel.send(WinTeam)
@@ -181,11 +155,8 @@ class MyClient(discord.Client):
 
                     if D == 'ㅇ' or D == 'd':
                         break
-                    
                     else:
                         await message.channel.send('잘좀 쓰자.')
-
-
 
                 # Make the TieTeam as the matchTeam
                 for u in matchTeam[i]:
@@ -208,10 +179,7 @@ class MyClient(discord.Client):
                     PointList[i] += 1
                 
                 PointList = sort(PointList)
-
                 await message.channel.send('{}\n' .format(PointList))
-
-
                 await message.channel.send('골을 기록해라.')
 
                 while True:
@@ -237,9 +205,6 @@ class MyClient(discord.Client):
                                 break
                         except:
                             await message.channel.send('잘좀 쓰자.')
-
-
-
                     elif ScoreD == 1:
                         await message.channel.send('골 누가 넣었냐? (뉴 페이스[0])')
                         try:
@@ -293,29 +258,8 @@ class MyClient(discord.Client):
                     else:
                         await message.channel.send('잘 좀 쳐라')
 
-
-
-
-
-
-
-
-
-
+                        
+                        
 client = MyClient()
 acess_token = os.environ["BOT_TOKEN"]
 client.run('acess_token')
-
-
-                    
-
-
-
-
-
-
-
-
-
-
-
